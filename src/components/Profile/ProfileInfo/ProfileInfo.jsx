@@ -5,7 +5,7 @@ const ProfileInfo = () => {
   return (
     <div>
       <div>
-        <img src="https://netswire.usatoday.com/wp-content/uploads/sites/9/2021/04/USATSI_15953834.jpg?w=1000&h=600&crop=1" />
+        <img src="https://images.beinsports.com/s18SJoVWRvdHQxfclOvmKa6XyIM=/670x424/smart/giannis-antetokounmpo-of-the-bucks_xbtmhwpio34k1eo3owq8ancwt.jpg" />
       </div>
       <div className={s.descriptionBlock}>avatar + description</div>
     </div>

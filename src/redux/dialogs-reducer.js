@@ -6,32 +6,32 @@ let initialState = {
     {
       id: 1,
       name: "Dima",
-      src: "https://content.sportslogos.net/logos/6/237/thumbs/uig7aiht8jnpl1szbi57zzlsh.gif",
+      src: "https://content.sportslogos.net/logos/6/225/thumbs/22582752016.gif",
     },
     {
       id: 2,
       name: "Mari",
-      src: "https://content.sportslogos.net/logos/6/216/thumbs/2nn48xofg0hms8k326cqdmuis.gif",
+      src: "https://content.sportslogos.net/logos/6/238/thumbs/23843702014.gif",
     },
     {
       id: 3,
       name: "Temo",
-      src: "https://content.sportslogos.net/logos/6/214/thumbs/burm5gh2wvjti3xhei5h16k8e.gif",
+      src: "https://content.sportslogos.net/logos/6/220/thumbs/22081902021.gif",
     },
     {
       id: 4,
       name: "Levan",
-      src: "https://content.sportslogos.net/logos/6/221/thumbs/hj3gmh82w9hffmeh3fjm5h874.gif",
+      src: "https://content.sportslogos.net/logos/6/218/thumbs/21870342016.gif",
     },
     {
       id: 5,
       name: "Nikusha",
-      src: "https://content.sportslogos.net/logos/6/3786/thumbs/hsuff5m3dgiv20kovde422r1f.gif",
+      src: "https://content.sportslogos.net/logos/6/219/thumbs/21956712016.gif",
     },
     {
       id: 6,
       name: "Nina",
-      src: "https://content.sportslogos.net/logos/6/213/thumbs/slhg02hbef3j1ov4lsnwyol5o.gif",
+      src: "https://content.sportslogos.net/logos/6/224/thumbs/22448122018.gif",
     },
   ],
 
@@ -44,21 +44,23 @@ let initialState = {
   ],
 
   newMessageText: "Say something",
-},
+};
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case SEND_MESSAGE:
-      let newMessage = {
-        id: 6,
-        message: state.newMessageText,
+      return {
+        ...state,
+        newMessageText: "",
+        messages: [...state.messages, { id: 6, message: state.newMessageText }],
       };
-      state.messages.push(newMessage);
-      state.newMessageText = "";
-      return state;
+
     case UPDATE_NEW_MESSAGE_TEXT:
-      state.newMessageText = action.newMessage;
-      return state;
+      return {
+        ...state,
+        newMessageText: action.newMessage,
+      };
+
     default:
       return state;
   }
