@@ -5,7 +5,10 @@ import styles from "./Header.module.css";
 const Header = (props) => {
   return (
     <header className={styles.header}>
-      <img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c53e.png" />
+      <img
+        alt=""
+        src="https://freepngimg.com/thumb/social_media/74409-instagram-media-social-blog-advertising-marketing-logo-thumb.png"
+      />
       <div className={styles.loginBlock}>
         {props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}
       </div>
