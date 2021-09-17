@@ -9,6 +9,7 @@ import {
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader.js";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -26,7 +27,7 @@ class UsersContainer extends React.Component {
 
   onPageChanged = (pageNumber) => {
     this.props.getUsers(pageNumber);
-    console.log(pageNumber);
+    this.props.setCurrentPage(pageNumber);
   };
 
   render() {
@@ -85,11 +86,12 @@ let mapStateToProps = (state) => {
 
 //let withRedirect = withAuthRedirect(UsersContainer);
 
-export default withAuthRedirect(
+export default compose(
+  withAuthRedirect,
   connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
     getUsers: getUsers,
-  })(UsersContainer)
-);
+  })
+)(UsersContainer);
