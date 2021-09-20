@@ -1,8 +1,9 @@
-import { usersAPI } from "../api/api";
+import { profileAPI, usersAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET-USER-PROFILE";
+const SET_STATUS = "SET-STATUS";
 
 let initialState = {
   posts: [
@@ -13,6 +14,7 @@ let initialState = {
   ],
   newPostText: "What's on your mind?",
   profile: null,
+  status: "",
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -36,6 +38,11 @@ const profileReducer = (state = initialState, action) => {
       return {
         ...state,
         profile: action.profile,
+      };
+    case SET_STATUS:
+      return {
+        ...state,
+        status: action.status,
       };
 
     default:
@@ -63,10 +70,36 @@ export const updateNewPostTextActionCreator = (text) => {
   };
 };
 
+export const setStatus = (status) => {
+  return {
+    type: SET_STATUS,
+    status,
+  };
+};
+
 export const getUserProfile = (id) => {
   return (dispatch) => {
     usersAPI.getProfile(id).then((data) => {
       dispatch(setUserProfile(data));
+    });
+  };
+};
+
+export const getStatus = (id) => {
+  return (dispatch) => {
+    profileAPI.getStatus(id).then((data) => {
+      //debugger;
+      dispatch(setStatus(data));
+    });
+  };
+};
+
+export const updateStatus = (status) => {
+  return (dispatch) => {
+    profileAPI.updateStatus(status).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(setStatus(status));
+      }
     });
   };
 };
